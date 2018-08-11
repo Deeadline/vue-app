@@ -1,5 +1,7 @@
 # vue-app
 
+Vue-app for learn VueJS.
+
 ## Project setup
 ```
 npm install
