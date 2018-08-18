@@ -23,10 +23,16 @@ export default {
   data() {
     return {
       results: [],
-      dogLimit: null,
+      dogLimit: '',
     };
   },
   methods: {
+    runProperlyFunction: function(){
+      if(this.dogLimit !== '' && this.dogLimit.indexOf(' ') < 0) {
+        return { input: this.showPuppies() };
+      }
+      return { input : this.errorLogs() };
+    },
     showPuppies: debounce(function() {
       axios
         .get(
@@ -40,13 +46,9 @@ export default {
           console.log(error);
         });
     }, 400),
-    errorLogs: () => {
-      console.log(`${this.dogLimit} not found!`);
-    },
-  },
-  computed: {
-    runProperlyFunction: function(){
-      (this.dogLimit !== null && this.dogLimit.indexOf(' ') < 0) ? showPuppies : errorLogs;
+    errorLogs: function () {
+      alert(`Dog limit not found!`);
+      location.reload();
     },
   },
 };
@@ -55,7 +57,8 @@ export default {
 
 <style lang="scss" scoped>
 body{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 16px;
   margin:0;
   padding: 0;
 }
