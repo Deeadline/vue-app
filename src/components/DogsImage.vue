@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "DogImage",
+  name: "DogsImage",
   props: {
     result: {
       type: Object,

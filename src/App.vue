@@ -1,28 +1,28 @@
 <template>
   <div class="wrapper">
-    <Dogs v-model="dogLimit"
+    <DogsSearch v-model="dogLimit"
      @input="runProperlyFunction"/>
 
     <div class="imageResult" v-if="results !== null">
-      <dog-image v-for="result in results" :key="result.id" :result="result" />
+      <dogs-image v-for="result in results" :key="result.id" :result="result" />
     </div>
   </div>
 </template>
 
 <script>
-import Dogs from "@/components/Dogs.vue";
-import DogImage from "@/components/DogsImage.vue";
+import DogsSearch from "@/components/DogsSearch.vue";
+import DogsImage from "@/components/DogsImage.vue";
 import {debounce, axios, baseUrl, header} from "@/Constants.js";
 
 export default {
   name: "App",
   components: {
-    Dogs,
-    DogImage,
+    DogsSearch,
+    DogsImage,
   },
   data() {
     return {
-      results: [],
+      results: Object,
       dogLimit: '',
     };
   },

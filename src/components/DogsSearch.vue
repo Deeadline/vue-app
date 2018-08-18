@@ -1,5 +1,5 @@
 <template>
-<div class="DogWrapper">
+<div class="SearchWrapper">
     <p>How many dogs do you want to see?</p>
     <input @input="sendProperty"
         :value="value"
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'Hello',
+    name: 'DogsSearch',
     props: {
         value: {
             type: String,
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.DogWrapper {
+.SearchWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
