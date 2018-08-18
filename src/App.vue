@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <Dogs v-model="dogLimit"
-     @input="variables"/>
+     @input="runProperlyFunction"/>
 
     <div class="imageResult" v-if="results !== null">
       <dog-image v-for="result in results" :key="result.id" :result="result" />
@@ -45,7 +45,7 @@ export default {
     },
   },
   computed: {
-    variables: function(){
+    runProperlyFunction: function(){
       (this.dogLimit !== null && this.dogLimit.indexOf(' ') < 0) ? showPuppies : errorLogs;
     },
   },
