@@ -1,51 +1,49 @@
 <template>
 <div class="DogWrapper">
-    <label for="dogInput">How many dogs do you want to see?</label>
-    <input v-model="dogLimit" :placeholder="placeholder">
-    <button @click="showPuppies(dogLimit)">Submit</button>
-
-    <div v-for="result in results" :key="result.id">
-        <img :src="result.url" />
-    </div>
+    <p>How many dogs do you want to see?</p>
+    <input @input="sendProperty"
+     :value="value"
+      :placeholder="value || placeholder"/>
 </div>
 </template>
 
 <script>
-const axios = require('axios');
-const baseUrl = "https://api.thedogapi.com/v1/images/search";
-const header = {
-    headers: {'x-api-key': 'a8589ed6-0d78-4ee2-b333-a2caf465c342'}
-};
 export default {
     name: 'Hello',
+    props: {
+        value: {
+            required: true,
+        },
+    },
     data() {
         return {
-            results: [],
-            dogLimit: null,
-            placeholder: "From 1 to 25",
-        };
+            placeholder:  '',
+        }
     },
     methods: {
-        showPuppies(dogLimit) {
-            axios.get(`${baseUrl}?size=med&mime_types=jpg&format=json&limit=${dogLimit}`, header).then( (response) => {
-                this.results = response.data;
-            })
-            .catch((error)=> {
-                console.log(error)
-            });
+        sendProperty(e) {
+            this.$emit('input', e.target.value);
         }
-    }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-.DogWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-label{
-    padding-bottom: 5px;
+.DogWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    padding-bottom: 15px;
+  }
+  input {
+    height: 25px;
+    border: 0;
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
 }
 </style>
